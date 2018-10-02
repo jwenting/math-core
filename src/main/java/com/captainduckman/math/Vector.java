@@ -105,20 +105,38 @@ public class Vector extends AbstractTupleProxy<Vector> {
         return this;
     }
 
+    /**
+     * Normalise the vector.
+     *
+     * @return the normalised vector
+     */
     public Vector normalise() {
         tuple.normalise();
         return this;
     }
 
+    /**
+     * Calculate the dot product between 2 vectors.
+     * @param vector the other vector
+     * @return the dot product
+     */
     public double dot(final Vector vector) {
         return tuple.dot(vector.tuple);
     }
 
+    /**
+     * Calculate the cross product between 2 vectors.
+     * @param vector the other vector
+     * @return a new vector representing the cross product
+     */
     public Vector cross(final Vector vector) {
         Tuple t = new Tuple(tuple.x, tuple.y, tuple.z, tuple.w);
         return new Vector(t.cross(vector.tuple));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean equals(final Object o) {
         if (this == o) {
@@ -209,17 +227,33 @@ public class Vector extends AbstractTupleProxy<Vector> {
         return this;
     }
 
-    public Vector subtract(final Point position) {
-        tuple.subtract(position.tuple);
+    /**
+     * Subtract a point from this vector.
+     *
+     * @param point the point to subtract
+     * @return the vector after substraction
+     */
+    public Vector subtract(final Point point) {
+        tuple.subtract(point.tuple);
         tuple.w = Tuple.TYPE_VECTOR;
         return this;
     }
 
+    /**
+     * Transform the vector
+     * @param matrix the transformation
+     * @return the transformed vector
+     */
     public Vector transform(final AbstractMutationMatrix matrix) {
         tuple = matrix.matrix.multiply(tuple);
         return this;
     }
 
+    /**
+     * Reflect a vector in another.
+     * @param n the other vector
+     * @return the vector after reflection
+     */
     public Vector reflect(final Vector n) {
         Vector vector = new Vector(n);
         Vector multiply = vector.multiply(2).multiply(this.dot(n));
@@ -227,6 +261,10 @@ public class Vector extends AbstractTupleProxy<Vector> {
         return this;
     }
 
+    /**
+     * Determine the magnitude of the vector.
+     * @return the magnitude
+     */
     public double magnitude() {
         return Math.sqrt(Math.pow(getX(), 2) + Math.pow(getY(), 2) + Math.pow(getZ(), 2));
     }
