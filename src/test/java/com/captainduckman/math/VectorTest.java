@@ -203,4 +203,13 @@ class VectorTest extends AbstractMathTest {
         double val = vector.magnitude();
         assertEquals(30, val, 0.0001);
     }
+
+    @Test
+    @DisplayName("reflect")
+    void reflect() {
+        Vector vector = new Vector(-20, 20, -10);
+        Vector vector2 = new Vector(.1, .1, .1);
+        vector.reflect(vector2);
+        assertEquals(new Vector(-19.8, 20.2, -9.8), vector);
+    }
 }
