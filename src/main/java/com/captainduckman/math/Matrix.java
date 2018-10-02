@@ -95,6 +95,26 @@ public class Matrix {
         return result;
     }
 
+    /**
+     * Generate an identity matrix with the desired size.
+     *
+     * @param dimension the desired size
+     * @return a new identity matrix
+     */
+    public static Matrix getIdentityMatrix(final int dimension) {
+        Matrix matrix = new Matrix(dimension);
+        for (int i = 0; i < dimension; i++) {
+            matrix.grid[i][i] = 1;
+        }
+        return matrix;
+    }
+
+    /**
+     * Multiply the Matrix by a Tuple.
+     *
+     * @param tuple the Tuple
+     * @return a new Tuple
+     */
     public Tuple multiply(final Tuple tuple) {
         if (dimension != 4) {
             throw new IllegalArgumentException("Can only multiply with Tuple if dimension is 4");
@@ -106,6 +126,9 @@ public class Matrix {
         return new Tuple(x, y, z, w);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return "Matrix{" +
@@ -114,6 +137,10 @@ public class Matrix {
                 '}';
     }
 
+    /**
+     * Return a String representation of the matrix.
+     * @return a String representation of the matrix
+     */
     public String printGrid() {
         StringBuilder builder = new StringBuilder();
         for (int r = 0; r < dimension; r++) {
@@ -122,14 +149,10 @@ public class Matrix {
         return builder.toString();
     }
 
-    public static Matrix getIdentityMatrix(final int dimension) {
-        Matrix matrix = new Matrix(dimension);
-        for (int i = 0; i < dimension; i++) {
-            matrix.grid[i][i] = 1;
-        }
-        return matrix;
-    }
-
+    /**
+     * Transpose the matrix.
+     * @return the transposed matrix.
+     */
     public Matrix transpose() {
         double[][] tempGrid = new double[dimension][dimension];
         for (int r = 0; r < dimension; r++) {
@@ -145,6 +168,9 @@ public class Matrix {
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean equals(final Object o) {
         if (this == o) {
@@ -171,6 +197,9 @@ public class Matrix {
         return result;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int hashCode() {
         int result = Objects.hash(dimension);
@@ -178,6 +207,10 @@ public class Matrix {
         return result;
     }
 
+    /**
+     * Determine the determinant.
+     * @return the determinant
+     */
     public double determinant() {
         if (dimension == 2) {
             return (grid[0][0] * grid[1][1]) - (grid[0][1] * grid[1][0]);
@@ -189,6 +222,12 @@ public class Matrix {
         return result;
     }
 
+    /**
+     * Find the submatrix given by removing the indicated row and column.
+     * @param stripRow the column to remove
+     * @param stripColumn the row to remove
+     * @return the resulting submatrix
+     */
     public Matrix subMatrix(final int stripRow, final int stripColumn) {
         Matrix result = new Matrix(dimension - 1);
         for (int r = 0; r < dimension; r++) {
@@ -218,11 +257,23 @@ public class Matrix {
         return result;
     }
 
+    /**
+     * Determine the minor (determinant) of the submatrix given by removing the indicated row and column.
+     * @param stripRow the column to remove
+     * @param stripCol the row to remove
+     * @return the minor
+     */
     public double minor(final int stripRow, final int stripCol) {
         Matrix sub = subMatrix(stripRow, stripCol);
         return sub.determinant();
     }
 
+    /**
+     * Determine the cofactor of the submatrix given by removing the indicated row and column.
+     * @param stripRow the column to remove
+     * @param stripCol the row to remove
+     * @return the cofactor
+     */
     public double cofactor(final int stripRow, final int stripCol) {
         Matrix sub = subMatrix(stripRow, stripCol);
         double result = sub.determinant();
@@ -232,10 +283,18 @@ public class Matrix {
         return result;
     }
 
+    /**
+     * Determine whether the matrix can be inverted.
+     * @return true if the matrix can be inverted
+     */
     public boolean isInvertible() {
         return determinant() != 0;
     }
 
+    /**
+     * Determine the inverse of the matrix.
+     * @return the inverted matrix
+     */
     public Matrix inverse() {
         Matrix coFactors = new Matrix(dimension);
         for (int row = 0; row < dimension; row++) {

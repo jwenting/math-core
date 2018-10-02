@@ -5,4 +5,7 @@ class MockMutationMatrix extends MutationMatrix {
         matrix = Matrix.getIdentityMatrix(4);
     }
 
+    public MockMutationMatrix(Matrix matrix) {
+        this.matrix = matrix;
+    }
 }
