@@ -1,5 +1,8 @@
 package com.captainduckman.math;
 
+/**
+ * Rotation around the Y axis.
+ */
 public class RotationMatrixY extends AbstractRotationMatrix {
 
     /**

@@ -1,5 +1,8 @@
 package com.captainduckman.math;
 
+/**
+ * Rotation around the Z axis.
+ */
 public class RotationMatrixZ extends AbstractRotationMatrix {
     /**
      * Creates a new RotationMatrixX.

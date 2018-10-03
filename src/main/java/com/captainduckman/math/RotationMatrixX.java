@@ -1,5 +1,8 @@
 package com.captainduckman.math;
 
+/**
+ * Rotation around the X axis.
+ */
 public class RotationMatrixX extends AbstractRotationMatrix {
 
     /**
