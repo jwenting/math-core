@@ -46,4 +46,19 @@ public class MathUtils {
         return diff < PRECISION;
     }
 
+    /**
+     * Compare two doubles.
+     *
+     * @param d1 first
+     * @param d2 second
+     * @return 0 if the same, 1 if first larger, -1 if second larger
+     */
+    public static int compareTo(final double d1, final double d2) {
+        double diff = abs(d1 - d2);
+        if (diff < PRECISION) {
+            return 0;
+        }
+        return d1 > d2 ? 1 : -1;
+    }
+
 }

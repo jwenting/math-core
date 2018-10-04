@@ -2,8 +2,7 @@ package com.captainduckman.math;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class MathUtilsTest {
 
@@ -18,6 +17,15 @@ class MathUtilsTest {
         assertFalse(MathUtils.compare(Double.MAX_VALUE, Double.MIN_VALUE));
         assertFalse(MathUtils.compare(1, 0));
         assertFalse(MathUtils.compare(0.1, 0.101 + MathUtils.PRECISION));
+    }
+
+    @Test
+    void compareTo() {
+        assertEquals(0, MathUtils.compareTo(0.0, 0.0));
+        assertEquals(0, MathUtils.compareTo(Double.MIN_VALUE, Double.MIN_VALUE));
+        assertEquals(0, MathUtils.compareTo(Double.MAX_VALUE, Double.MAX_VALUE));
+        assertEquals(1, MathUtils.compareTo(1.0, 0.0));
+        assertEquals(-1, MathUtils.compareTo(0.0, 1.0));
     }
 
 }

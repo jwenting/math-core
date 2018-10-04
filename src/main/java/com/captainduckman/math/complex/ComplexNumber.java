@@ -2,10 +2,14 @@ package com.captainduckman.math.complex;
 
 import com.captainduckman.math.MathUtils;
 
+import java.util.Comparator;
+
+import static com.captainduckman.math.MathUtils.compareTo;
+
 /**
  * Represents a complex number.
  */
-public class ComplexNumber {
+public class ComplexNumber implements Comparator<ComplexNumber> {
     private double real;
     private double imaginary;
 
@@ -68,6 +72,15 @@ public class ComplexNumber {
 
     public void setImaginary(final double imaginary) {
         this.imaginary = imaginary;
+    }
+
+    @Override
+    public int compare(ComplexNumber o1, ComplexNumber o2) {
+        return compareTo(o1.magnitude(), o2.magnitude());
+    }
+
+    public double magnitude() {
+        return Math.sqrt(real * real + imaginary * imaginary);
     }
 
     @Override
